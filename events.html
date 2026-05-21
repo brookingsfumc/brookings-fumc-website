@@ -40,59 +40,32 @@
 
   <section class="section">
     <div class="container">
-      <div class="events-list large">
 
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">1</span></div>
-          <div class="event-info">
-            <h4>Summer Kickoff Picnic</h4>
-            <p><strong>After 10:45 AM Service</strong> · Church Grounds</p>
-            <p>Join us after worship for food, fellowship, and lawn games. Bring a dish to share and your appetite for community. All are welcome!</p>
-          </div>
-        </div>
-
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">8</span></div>
-          <div class="event-info">
-            <h4>Vacation Bible School Registration Opens</h4>
-            <p><strong>Online &amp; In-Person</strong> · VBS runs July 14–18</p>
-            <p>Sign up your children (ages 4–12) for a week of Bible stories, crafts, music, and friendship. Limited spots available.</p>
-          </div>
-        </div>
-
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">11</span></div>
-          <div class="event-info">
-            <h4>Wednesday Bible Study</h4>
-            <p><strong>6:30 PM</strong> · Fellowship Hall</p>
-            <p>Ongoing weekly study — all are welcome to drop in. This month we're exploring the Gospel of Mark.</p>
-          </div>
-        </div>
-
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">18</span></div>
-          <div class="event-info">
-            <h4>Community Meal — Open to All</h4>
-            <p><strong>5:30–7:00 PM</strong> · Fellowship Hall</p>
-            <p>A free, hot dinner open to anyone in Brookings. No questions asked, no strings attached. Just good food and good company.</p>
-          </div>
-        </div>
-
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">22</span></div>
-          <div class="event-info">
-            <h4>Youth Group Fundraiser Car Wash</h4>
-            <p><strong>10:00 AM – 2:00 PM</strong> · Church Parking Lot</p>
-            <p>Support our youth group's summer mission trip! Donations accepted.</p>
-          </div>
-        </div>
-
+      <!-- Loading state -->
+      <div id="events-loading" class="events-loading">
+        <div class="loading-spinner"></div>
+        <p>Loading upcoming events...</p>
       </div>
 
-      <!-- TIP BOX -->
-      <div class="tip-box">
-        <p>💡 <strong>Tip:</strong> To add more events, simply copy one of the <code>.event-row</code> blocks in <code>events.html</code> and update the date, title, and description. For a fully managed calendar, consider embedding <a href="https://calendar.google.com" target="_blank" rel="noopener">Google Calendar</a>.</p>
+      <!-- Error state -->
+      <div id="events-error" class="events-error" style="display:none;">
+        <p>⚠️ Unable to load events right now. Please check back soon or <a href="https://calendar.google.com/calendar/embed?src=m6p861t5evod3mp0lctjsou3s4%40group.calendar.google.com" target="_blank" rel="noopener">view our Google Calendar directly</a>.</p>
       </div>
+
+      <!-- Events list — populated by JavaScript -->
+      <div id="events-list" class="events-list large" style="display:none;"></div>
+
+      <!-- Empty state -->
+      <div id="events-empty" class="events-empty" style="display:none;">
+        <p>No upcoming events found. Check back soon!</p>
+        <p><a href="https://calendar.google.com/calendar/embed?src=m6p861t5evod3mp0lctjsou3s4%40group.calendar.google.com" target="_blank" rel="noopener">View our full Google Calendar →</a></p>
+      </div>
+
+      <!-- Link to full calendar -->
+      <div id="calendar-link" class="center" style="margin-top: 2.5rem; display:none;">
+        <a href="https://calendar.google.com/calendar/embed?src=m6p861t5evod3mp0lctjsou3s4%40group.calendar.google.com" target="_blank" rel="noopener" class="btn btn-secondary">View Full Calendar</a>
+      </div>
+
     </div>
   </section>
 
@@ -116,8 +89,8 @@
       <div class="footer-contact">
         <h4>Find Us</h4>
         <p>1212 5th Street<br />Brookings, SD 57006</p>
-        <p>(605) 555-0100</p>
-        <p><a href="mailto:office@brookingsfumc.org">office@brookingsfumc.org</a></p>
+        <p>605-692-4345</p>
+        <p><a href="mailto:office@brookingsmethodist.org">office@brookingsmethodist.org</a></p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -126,6 +99,103 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const API_KEY     = 'AIzaSyCK4vyJoMfocN1YgD2vHpXxAtMEePKIf5M';
+    const CALENDAR_ID = 'm6p861t5evod3mp0lctjsou3s4@group.calendar.google.com';
+    const MAX_EVENTS  = 20;
+    const MONTHS      = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const DAYS        = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    function formatTime(dateStr, isAllDay) {
+      if (isAllDay) return 'All Day';
+      const d = new Date(dateStr);
+      let h = d.getHours(), m = d.getMinutes(), ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      return m === 0 ? `${h}:00 ${ampm}` : `${h}:${String(m).padStart(2,'0')} ${ampm}`;
+    }
+
+    function formatDateRange(start, end, isAllDay) {
+      const startDate = new Date(isAllDay ? start.date : start.dateTime);
+      const endDate   = end ? new Date(isAllDay ? end.date : end.dateTime) : null;
+
+      const startTime = formatTime(isAllDay ? start.date : start.dateTime, isAllDay);
+
+      if (!endDate || isAllDay) return `${DAYS[startDate.getDay()]} · ${startTime}`;
+
+      const endTime = formatTime(isAllDay ? end.date : end.dateTime, isAllDay);
+      return `${DAYS[startDate.getDay()]} · ${startTime} – ${endTime}`;
+    }
+
+    function buildEventCard(event) {
+      const isAllDay  = !event.start.dateTime;
+      const startDate = new Date(isAllDay ? event.start.date : event.start.dateTime);
+      const month     = MONTHS[startDate.getMonth()];
+      const day       = startDate.getDate();
+      const timeStr   = formatDateRange(event.start, event.end, isAllDay);
+      const location  = event.location ? `<span class="event-location"> · ${event.location}</span>` : '';
+      const desc      = event.description
+        ? `<p class="event-desc">${event.description.replace(/<[^>]*>/g, '').substring(0, 200)}${event.description.length > 200 ? '…' : ''}</p>`
+        : '';
+      const link      = event.htmlLink
+        ? `<a href="${event.htmlLink}" target="_blank" rel="noopener" class="event-gcal-link">Add to calendar →</a>`
+        : '';
+
+      return `
+        <div class="event-row">
+          <div class="event-date">
+            <span class="month">${month}</span>
+            <span class="day">${day}</span>
+          </div>
+          <div class="event-info">
+            <h4>${event.summary || 'Untitled Event'}</h4>
+            <p class="event-meta"><strong>${timeStr}</strong>${location}</p>
+            ${desc}
+            ${link}
+          </div>
+        </div>`;
+    }
+
+    async function loadEvents() {
+      const loading   = document.getElementById('events-loading');
+      const errorEl   = document.getElementById('events-error');
+      const listEl    = document.getElementById('events-list');
+      const emptyEl   = document.getElementById('events-empty');
+      const calLink   = document.getElementById('calendar-link');
+
+      const now       = new Date().toISOString();
+      const url       = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events`
+        + `?key=${API_KEY}`
+        + `&timeMin=${now}`
+        + `&maxResults=${MAX_EVENTS}`
+        + `&singleEvents=true`
+        + `&orderBy=startTime`;
+
+      try {
+        const res  = await fetch(url);
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data = await res.json();
+
+        loading.style.display = 'none';
+
+        if (!data.items || data.items.length === 0) {
+          emptyEl.style.display = 'block';
+          return;
+        }
+
+        listEl.innerHTML = data.items.map(buildEventCard).join('');
+        listEl.style.display  = 'flex';
+        calLink.style.display = 'block';
+
+      } catch (err) {
+        console.error('Calendar load error:', err);
+        loading.style.display = 'none';
+        errorEl.style.display = 'block';
+      }
+    }
+
+    loadEvents();
+  </script>
 
 </body>
 </html>

@@ -126,37 +126,83 @@
     <div class="container">
       <p class="eyebrow center">What's Coming Up</p>
       <h2 class="center">Upcoming Events</h2>
-      <div class="events-list">
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">1</span></div>
-          <div class="event-info">
-            <h4>Summer Kickoff Picnic</h4>
-            <p>Join us after the 10:00 AM service for food, fellowship, and lawn games on the church grounds.</p>
-          </div>
-          <a href="events.html" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">8</span></div>
-          <div class="event-info">
-            <h4>Vacation Bible School Registration Opens</h4>
-            <p>Sign up your kids for a week of faith, fun, and friendship this July.</p>
-          </div>
-          <a href="events.html" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="event-row">
-          <div class="event-date"><span class="month">JUN</span><span class="day">18</span></div>
-          <div class="event-info">
-            <h4>Community Meal — Open to All</h4>
-            <p>A free dinner for anyone in Brookings who'd like to share a table with us. 5:30–7 PM.</p>
-          </div>
-          <a href="events.html" class="btn btn-secondary">Details</a>
-        </div>
+      <div id="home-events-loading" class="events-loading">
+        <div class="loading-spinner"></div>
+      </div>
+      <div id="home-events-list" class="events-list" style="display:none;"></div>
+      <div id="home-events-error" style="display:none; text-align:center; padding: 1rem 0; color: var(--text-light);">
+        <p>Unable to load events. <a href="events.html">View all events →</a></p>
       </div>
       <div class="center" style="margin-top: 2rem;">
         <a href="events.html" class="btn btn-primary">View All Events</a>
       </div>
     </div>
   </section>
+
+  <script>
+    const API_KEY     = 'AIzaSyCK4vyJoMfocN1YgD2vHpXxAtMEePKIf5M';
+    const CALENDAR_ID = 'm6p861t5evod3mp0lctjsou3s4@group.calendar.google.com';
+    const MONTHS      = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const DAYS        = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    function formatTime(dateStr, isAllDay) {
+      if (isAllDay) return 'All Day';
+      const d = new Date(dateStr);
+      let h = d.getHours(), m = d.getMinutes(), ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      return m === 0 ? `${h}:00 ${ampm}` : `${h}:${String(m).padStart(2,'0')} ${ampm}`;
+    }
+
+    async function loadHomeEvents() {
+      const loading = document.getElementById('home-events-loading');
+      const listEl  = document.getElementById('home-events-list');
+      const errorEl = document.getElementById('home-events-error');
+
+      const now = new Date().toISOString();
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events`
+        + `?key=${API_KEY}&timeMin=${now}&maxResults=3&singleEvents=true&orderBy=startTime`;
+
+      try {
+        const res  = await fetch(url);
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data = await res.json();
+
+        loading.style.display = 'none';
+
+        if (!data.items || data.items.length === 0) {
+          errorEl.innerHTML = '<p>No upcoming events. <a href="events.html">View calendar →</a></p>';
+          errorEl.style.display = 'block';
+          return;
+        }
+
+        listEl.innerHTML = data.items.map(event => {
+          const isAllDay  = !event.start.dateTime;
+          const startDate = new Date(isAllDay ? event.start.date : event.start.dateTime);
+          const month     = MONTHS[startDate.getMonth()];
+          const day       = startDate.getDate();
+          const timeStr   = formatTime(isAllDay ? event.start.date : event.start.dateTime, isAllDay);
+          const dayName   = DAYS[startDate.getDay()];
+          return `
+            <div class="event-row">
+              <div class="event-date"><span class="month">${month}</span><span class="day">${day}</span></div>
+              <div class="event-info">
+                <h4>${event.summary || 'Untitled Event'}</h4>
+                <p class="event-meta"><strong>${dayName} · ${timeStr}</strong></p>
+              </div>
+              <a href="events.html" class="btn btn-secondary">Details</a>
+            </div>`;
+        }).join('');
+
+        listEl.style.display = 'flex';
+
+      } catch (err) {
+        loading.style.display = 'none';
+        errorEl.style.display = 'block';
+      }
+    }
+
+    loadHomeEvents();
+  </script>
 
   <!-- FOOTER -->
   <footer class="site-footer">

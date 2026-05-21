@@ -444,6 +444,61 @@ nav { flex: 1; }
   color: var(--maroon);
 }
 
+/* --- GOOGLE CALENDAR EVENTS --- */
+.events-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 0;
+  color: var(--text-light);
+}
+
+.loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--maroon);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.events-error,
+.events-empty {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--text-light);
+}
+
+.event-meta {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  margin-bottom: 0.4rem;
+}
+
+.event-location {
+  color: var(--text-light);
+}
+
+.event-desc {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  margin-top: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.event-gcal-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--maroon);
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
 /* --- EVENTS --- */
 .events-list {
   display: flex;
