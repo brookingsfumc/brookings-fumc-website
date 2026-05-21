@@ -351,6 +351,32 @@ nav { flex: 1; }
   .service-item { flex-direction: row; gap: 0.5rem; }
 }
 
+/* --- REAL PHOTOS --- */
+.welcome-image-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.welcome-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 320px;
+}
+
+.staff-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  margin: 0 auto 1rem;
+  display: block;
+  border: 3px solid var(--border);
+}
+
 /* --- IMAGE PLACEHOLDERS --- */
 .welcome-image-placeholder { display: flex; align-items: stretch; }
 
