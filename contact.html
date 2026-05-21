@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Brookings First UMC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-cross">✝</span>
+        <span class="logo-text">Brookings <strong>First UMC</strong></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="watch.html">Watch Online</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="give.html">Give</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="contact.html" class="btn btn-primary">Plan a Visit</a>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">We'd Love to Meet You</p>
+      <h1>Contact Us</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>Whether you have a question, need prayer, or are planning your first visit — we're here for you. Reach out any time.</p>
+
+        <div class="contact-detail">
+          <strong>📍 Address</strong>
+          <p>1212 5th Street<br />Brookings, SD 57006</p>
+        </div>
+        <div class="contact-detail">
+          <strong>📞 Phone</strong>
+          <p>(605) 555-0100</p>
+        </div>
+        <div class="contact-detail">
+          <strong>✉️ Email</strong>
+          <p><a href="mailto:office@brookingsfumc.org">office@brookingsfumc.org</a></p>
+        </div>
+        <div class="contact-detail">
+          <strong>🕐 Office Hours</strong>
+          <p>Monday–Friday: 9:00 AM – 4:00 PM</p>
+        </div>
+        <div class="contact-detail">
+          <strong>🙏 Sunday Services</strong>
+          <p>8:30 AM &amp; 10:45 AM</p>
+        </div>
+
+        <!-- Google Maps embed — replace with your actual address embed code -->
+        <div class="map-embed">
+          <iframe
+            src="https://maps.google.com/maps?q=Brookings+First+United+Methodist+Church&output=embed"
+            title="Church Location"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <h2>Send Us a Message</h2>
+        <p style="color:#666; margin-bottom: 1.5rem;">Fill out the form below and we'll get back to you within one business day.</p>
+
+        <!-- FORM NOTE: This form needs a backend service to actually send emails.         -->
+        <!-- Easiest options: Formspree (formspree.io) or Web3Forms (web3forms.com)        -->
+        <!-- Replace action="YOUR_FORM_URL" with your Formspree or Web3Forms endpoint URL -->
+        <form class="contact-form" action="YOUR_FORM_URL" method="POST">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">Select a topic...</option>
+              <option value="visit">Planning a Visit</option>
+              <option value="prayer">Prayer Request</option>
+              <option value="membership">Membership Information</option>
+              <option value="events">Events & Programs</option>
+              <option value="general">General Question</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary full-width">Send Message</button>
+        </form>
+
+        <div class="tip-box" style="margin-top: 1.5rem;">
+          <p>💡 <strong>Tip:</strong> To make this form work, sign up at <a href="https://formspree.io" target="_blank" rel="noopener">Formspree.io</a> (free tier available) and replace <code>YOUR_FORM_URL</code> in the form's <code>action</code> attribute with your Formspree endpoint.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-cross">✝</span>
+        <span class="logo-text">Brookings <strong>First UMC</strong></span>
+        <p>Open hearts. Open minds. Open doors.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="watch.html">Watch Online</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="give.html">Give</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Find Us</h4>
+        <p>1212 5th Street<br />Brookings, SD 57006</p>
+        <p>(605) 555-0100</p>
+        <p><a href="mailto:office@brookingsfumc.org">office@brookingsfumc.org</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Brookings First United Methodist Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
