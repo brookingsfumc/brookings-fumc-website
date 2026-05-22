@@ -6,7 +6,7 @@
   <title>Give — Brookings First UMC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />family=Gentium+Basic:ital,wght@0,400;0,700;1,400;1,700<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Gentium+Basic:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -30,6 +30,7 @@
     </div>
   </header>
 
+  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="container">
       <p class="eyebrow">Generosity in Action</p>
@@ -37,59 +38,166 @@
     </div>
   </section>
 
+  <!-- GIVING INTRO -->
   <section class="section">
     <div class="container narrow center">
+      <p class="eyebrow">Thank You</p>
       <h2>Your Gift Makes a Difference</h2>
-      <p style="font-size: 1.1rem; color: #555; margin-bottom: 2.5rem;">Every gift — large or small — helps us serve our congregation, our community, and the world. Thank you for your generosity and faithfulness.</p>
+      <p style="font-size: 1.1rem; margin-bottom: 0;">Every gift — large or small — helps us serve our congregation, our community, and the world. We are grateful for your faithfulness and generosity. Brookings First UMC is a 501(c)(3) nonprofit organization, and all gifts are tax-deductible to the extent allowed by law.</p>
+    </div>
+  </section>
 
-      <!-- GIVING BUTTONS — Replace href links with your actual platform URLs -->
-      <div class="give-options">
-        <a href="https://www.tithe.ly/give?c=YOUR_CHURCH_ID" target="_blank" rel="noopener" class="give-card">
+  <!-- GIVING METHODS -->
+  <section class="section section-light">
+    <div class="container">
+      <p class="eyebrow center">Ways to Give</p>
+      <h2 class="center">Choose What Works for You</h2>
+      <div class="give-options" style="margin-top: 2.5rem;">
+
+        <!-- ONLINE VIA VANCO -->
+        <div class="give-card give-card-featured">
           <div class="give-icon">💳</div>
           <h3>Give Online</h3>
-          <p>Secure online giving via Tithe.ly. One-time or recurring.</p>
-          <span class="btn btn-primary">Give Now</span>
-        </a>
-        <a href="https://www.paypal.com/donate/?hosted_button_id=YOUR_ID" target="_blank" rel="noopener" class="give-card">
+          <p>The fastest and easiest way to give. Use any debit or credit card securely through our Vanco giving portal. One-time or recurring gifts available.</p>
+          <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: auto;">Give Now</a>
+        </div>
+
+        <!-- ACH / BANK TRANSFER -->
+        <div class="give-card">
+          <div class="give-icon">🏦</div>
+          <h3>ACH / Bank Transfer</h3>
+          <p>Give directly from your checking or savings account with no processing fees. Set up ACH giving through our Vanco portal by selecting "Bank Account" at checkout.</p>
+          <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: auto;">Set Up ACH</a>
+        </div>
+
+        <!-- VANCO MOBILE APP -->
+        <div class="give-card">
           <div class="give-icon">📱</div>
-          <h3>Give via PayPal</h3>
-          <p>Use your PayPal account or any debit/credit card.</p>
-          <span class="btn btn-secondary">PayPal</span>
-        </a>
+          <h3>Vanco Mobile App</h3>
+          <p>Download the free Vanco Faith app to give from your phone anytime. Search for <strong>Brookings First United Methodist</strong> after installing.</p>
+          <div class="app-badges">
+            <a href="https://apps.apple.com/us/app/vanco-faith/id1435096943" target="_blank" rel="noopener" class="app-badge">⬇ App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.vancopayments.vancomobile" target="_blank" rel="noopener" class="app-badge">⬇ Google Play</a>
+          </div>
+        </div>
+
+        <!-- IN-PERSON / MAIL -->
         <div class="give-card">
           <div class="give-icon">✉️</div>
-          <h3>Give by Mail</h3>
-          <p>Send a check payable to <strong>Brookings First UMC</strong> to:</p>
-          <p style="font-size: 0.9rem; color: #555;">625 Fifth Street<br />Brookings, SD 57006</p>
+          <h3>In-Person or by Mail</h3>
+          <p>Place your gift in the offering plate during Sunday worship, or mail a check payable to <strong>Brookings First United Methodist Church</strong> to:</p>
+          <address>
+            625 Fifth Street<br />
+            Brookings, SD 57006
+          </address>
         </div>
-      </div>
 
-      <div class="tip-box" style="margin-top: 3rem; text-align: left;">
-        <p>💡 <strong>Tip:</strong> Replace the <code>href</code> links in <code>give.html</code> with your actual Tithe.ly, Pushpay, or other giving platform URL. If you don't have one yet, <a href="https://www.tithe.ly" target="_blank" rel="noopener">Tithe.ly</a> and <a href="https://pushpay.com" target="_blank" rel="noopener">Pushpay</a> are popular options for churches.</p>
       </div>
     </div>
   </section>
 
-  <section class="section section-light">
-    <div class="container narrow center">
-      <h2>Where Your Gift Goes</h2>
-      <div class="card-grid thirds" style="margin-top: 2rem;">
+  <!-- WHERE YOUR GIFT GOES -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow center">Good Stewardship</p>
+      <h2 class="center">Where Your Gift Goes</h2>
+      <div class="card-grid thirds" style="margin-top: 2.5rem;">
         <div class="feature-card">
           <div class="card-icon">⛪</div>
           <h3>Local Ministry</h3>
-          <p>Worship services, pastoral care, Christian education, and congregational programs right here in Brookings.</p>
+          <p>Worship services, pastoral care, Christian education, youth programs, and congregational life right here in Brookings.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-icon">🤝</div>
+          <h3>Community Outreach</h3>
+          <p>Community meals, mission partnerships, and service projects that address real needs among our neighbors in Brookings.</p>
         </div>
         <div class="feature-card">
           <div class="card-icon">🌍</div>
-          <h3>Community Outreach</h3>
-          <p>Community meals, mission partnerships, and service projects that address real needs in our town.</p>
-        </div>
-        <div class="feature-card">
-          <div class="card-icon">🌐</div>
           <h3>Global Mission</h3>
-          <p>Support for United Methodist missions and relief work around the world through apportionments.</p>
+          <p>United Methodist missions and relief work around the world, supported through our annual apportionment giving.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="section section-light">
+    <div class="container narrow">
+      <p class="eyebrow center">Common Questions</p>
+      <h2 class="center">Giving FAQ</h2>
+      <div class="faq-list" style="margin-top: 2.5rem;">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is my online gift secure?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. All online giving is processed through Vanco, a trusted payment provider used by thousands of churches and nonprofits across the country. Vanco uses bank-level SSL encryption and is PCI DSS compliant — the same security standard used by major banks and credit card companies. Brookings First UMC never sees or stores your payment information.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is my gift tax-deductible?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Brookings First United Methodist Church is a registered 501(c)(3) nonprofit organization. All charitable contributions are tax-deductible to the extent permitted by law. You will receive a giving statement from the church each January for gifts made during the prior calendar year. For online gifts, you will also receive an immediate email receipt from Vanco.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How do I set up recurring giving?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Setting up recurring giving is easy through our Vanco portal. When you click "Give Now," you'll see an option to make your gift recurring — choose your frequency (weekly, bi-weekly, or monthly) and your start date. You can also set up recurring giving through the Vanco Faith mobile app. Recurring gifts help our church plan and budget throughout the year, and we are deeply grateful for that steady support.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How do I update or cancel a recurring gift?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>You can update or cancel your recurring gift at any time by logging into your Vanco account at <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener">secure.myvanco.com</a>, or through the Vanco Faith mobile app. If you need help, contact our church office at <a href="mailto:office@brookingsmethodist.org">office@brookingsmethodist.org</a> or call us at 605-692-4345 and we'll be happy to assist you.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What is ACH giving and how is it different from a credit card gift?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>ACH (Automated Clearing House) giving pulls funds directly from your checking or savings account — similar to a direct debit. The main advantage is that ACH gifts carry no processing fees, meaning 100% of your gift goes directly to the church. Credit and debit card gifts are also very welcome, though a small processing fee is applied by Vanco. You can choose your payment method when giving through the Vanco portal.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Can I give to a specific fund or ministry?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! When giving through the Vanco portal, you can designate your gift to a specific fund — such as the general fund, building fund, or a specific mission or outreach project. If you don't see the fund you're looking for, contact the church office and we can help direct your gift appropriately.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="section">
+    <div class="container narrow center">
+      <h2>Questions About Giving?</h2>
+      <p style="margin-bottom: 2rem;">We're happy to help. Reach out to our church office and someone will get back to you within one business day.</p>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
     </div>
   </section>
 
@@ -122,6 +230,28 @@
       </div>
     </div>
   </footer>
+
+  <!-- FAQ ACCORDION SCRIPT -->
+  <script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        // Close all
+        document.querySelectorAll('.faq-question').forEach(b => {
+          b.setAttribute('aria-expanded', 'false');
+          b.querySelector('.faq-icon').textContent = '+';
+          b.nextElementSibling.style.maxHeight = null;
+        });
+        // Open clicked if it was closed
+        if (!isOpen) {
+          button.setAttribute('aria-expanded', 'true');
+          button.querySelector('.faq-icon').textContent = '−';
+          const answer = button.nextElementSibling;
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
