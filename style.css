@@ -800,7 +800,7 @@ nav { flex: 1; }
 .footer-links h4,
 .footer-contact h4 {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -945,7 +945,7 @@ nav { flex: 1; }
 /* --- FOOTER MAP --- */
 .footer-map-col h4 {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
