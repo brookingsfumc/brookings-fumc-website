@@ -113,30 +113,35 @@
   </div>
 
   <script>
-    const fabMain = document.getElementById('fab-main');
-    const fabMenu = document.getElementById('fab-menu');
+    const fabMain    = document.getElementById('fab-main');
+    const fabMenu    = document.getElementById('fab-menu');
     const fabContainer = document.getElementById('fab-container');
-    const iconOpen  = fabMain.querySelector('.fab-icon-open');
-    const iconClose = fabMain.querySelector('.fab-icon-close');
+    const iconOpen   = fabMain.querySelector('.fab-icon-open');
+    const iconClose  = fabMain.querySelector('.fab-icon-close');
 
-    fabMain.addEventListener('click', () => {
-      const isOpen = fabMain.getAttribute('aria-expanded') === 'true';
-      fabMain.setAttribute('aria-expanded', !isOpen);
-      fabMenu.setAttribute('aria-hidden', isOpen);
-      fabContainer.classList.toggle('is-open', !isOpen);
-      iconOpen.style.display  = isOpen ? 'flex' : 'none';
-      iconClose.style.display = isOpen ? 'none' : 'flex';
+    function openFab() {
+      fabMain.setAttribute('aria-expanded', 'true');
+      fabMenu.setAttribute('aria-hidden', 'false');
+      fabContainer.classList.add('is-open');
+      iconOpen.style.display  = 'none';
+      iconClose.style.display = 'flex';
+    }
+
+    function closeFab() {
+      fabMain.setAttribute('aria-expanded', 'false');
+      fabMenu.setAttribute('aria-hidden', 'true');
+      fabContainer.classList.remove('is-open');
+      iconOpen.style.display  = 'flex';
+      iconClose.style.display = 'none';
+    }
+
+    fabMain.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fabMain.getAttribute('aria-expanded') === 'true' ? closeFab() : openFab();
     });
 
-    // Close if clicking outside
     document.addEventListener('click', (e) => {
-      if (!fabContainer.contains(e.target)) {
-        fabMain.setAttribute('aria-expanded', 'false');
-        fabMenu.setAttribute('aria-hidden', 'true');
-        fabContainer.classList.remove('is-open');
-        iconOpen.style.display  = 'flex';
-        iconClose.style.display = 'none';
-      }
+      if (!fabContainer.contains(e.target)) closeFab();
     });
   </script>
 
