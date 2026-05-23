@@ -790,13 +790,13 @@ nav { flex: 1; }
   margin-top: 0.75rem;
   font-style: italic;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.1rem;
 }
 
 .footer-links h4,
 .footer-contact h4 {
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -807,7 +807,7 @@ nav { flex: 1; }
 .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 .footer-links a {
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   color: rgba(255,255,255,0.65);
 }
@@ -815,7 +815,7 @@ nav { flex: 1; }
 
 .footer-contact p {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: rgba(255,255,255,0.65);
   margin-bottom: 0.5rem;
   letter-spacing: 0.03em;
@@ -830,7 +830,7 @@ nav { flex: 1; }
 
 .footer-bottom p {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   letter-spacing: 0.05em;
   color: rgba(255,255,255,0.35);
   margin: 0;
