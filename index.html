@@ -81,48 +81,56 @@
     </div>
   </section>
 
-  <!-- QUICK LINKS STRIP -->
-  <section class="quick-links-section">
-    <div class="container">
-      <button class="quick-links-toggle" aria-expanded="false" aria-controls="quick-links-content">
-        <span class="quick-links-toggle-label">Quick Links</span>
-        <span class="quick-links-toggle-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </span>
-      </button>
-      <div id="quick-links-content" class="quick-links-content" aria-hidden="true">
-        <div class="quick-links-grid">
-          <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener" class="quick-link-card">
-            <span class="quick-link-icon">💳</span>
-            <span class="quick-link-label">Give Online</span>
-          </a>
-          <a href="#" class="quick-link-card">
-            <span class="quick-link-icon">🎒</span>
-            <span class="quick-link-label">VBS Sign-Up</span>
-          </a>
-          <a href="#" class="quick-link-card">
-            <span class="quick-link-icon">🧃</span>
-            <span class="quick-link-label">Slush Booth Sign-Up</span>
-          </a>
-          <a href="watch.html" class="quick-link-card">
-            <span class="quick-link-icon">▶️</span>
-            <span class="quick-link-label">Watch Online</span>
-          </a>
-        </div>
-      </div>
+  <!-- QUICK LINKS FLOATING BUTTON -->
+  <div class="fab-container" id="fab-container">
+    <button class="fab-main" id="fab-main" aria-expanded="false" aria-label="Quick Links">
+      <span class="fab-icon-open">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </span>
+      <span class="fab-icon-close">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </span>
+      <span class="fab-label">Quick Links</span>
+    </button>
+    <div class="fab-menu" id="fab-menu" aria-hidden="true">
+      <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener" class="fab-item">
+        <span class="fab-item-label">Give Online</span>
+        <span class="fab-item-icon">💳</span>
+      </a>
+      <a href="#" class="fab-item">
+        <span class="fab-item-label">VBS Sign-Up</span>
+        <span class="fab-item-icon">🎒</span>
+      </a>
+      <a href="#" class="fab-item">
+        <span class="fab-item-label">Slush Booth Sign-Up</span>
+        <span class="fab-item-icon">🧃</span>
+      </a>
+      <a href="watch.html" class="fab-item">
+        <span class="fab-item-label">Watch Online</span>
+        <span class="fab-item-icon">▶️</span>
+      </a>
     </div>
-  </section>
+  </div>
 
   <script>
-    const toggleBtn = document.querySelector('.quick-links-toggle');
-    const content   = document.getElementById('quick-links-content');
+    const fabMain = document.getElementById('fab-main');
+    const fabMenu = document.getElementById('fab-menu');
+    const fabContainer = document.getElementById('fab-container');
 
-    toggleBtn.addEventListener('click', () => {
-      const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', !isOpen);
-      content.setAttribute('aria-hidden', isOpen);
-      content.style.maxHeight = isOpen ? null : content.scrollHeight + 'px';
-      toggleBtn.classList.toggle('is-open', !isOpen);
+    fabMain.addEventListener('click', () => {
+      const isOpen = fabMain.getAttribute('aria-expanded') === 'true';
+      fabMain.setAttribute('aria-expanded', !isOpen);
+      fabMenu.setAttribute('aria-hidden', isOpen);
+      fabContainer.classList.toggle('is-open', !isOpen);
+    });
+
+    // Close if clicking outside
+    document.addEventListener('click', (e) => {
+      if (!fabContainer.contains(e.target)) {
+        fabMain.setAttribute('aria-expanded', 'false');
+        fabMenu.setAttribute('aria-hidden', 'true');
+        fabContainer.classList.remove('is-open');
+      }
     });
   </script>
 
