@@ -1114,22 +1114,24 @@ nav { flex: 1; }
 
 .fab-item-icon { font-size: 1rem; line-height: 1; }
 
-/* Mobile — smaller and tucked into corner */
+/* Mobile — smaller pill, teal color, label visible */
 @media (max-width: 600px) {
   .fab-container {
     bottom: 1rem;
     right: 1rem;
   }
   .fab-main {
-    padding: 0.55rem 0.9rem;
-    font-size: 0.72rem;
+    background: var(--teal);
+    box-shadow: 0 4px 16px rgba(0,82,128,0.45);
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
   }
-  .fab-label { display: none; }
-  .fab-main {
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    justify-content: center;
-    border-radius: 50%;
+  .fab-main:hover {
+    background: var(--teal-dark);
+    box-shadow: 0 6px 20px rgba(0,82,128,0.55);
+  }
+  .fab-container.is-open .fab-main {
+    background: var(--text-dark);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   }
 }
