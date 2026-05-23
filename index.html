@@ -82,28 +82,49 @@
   </section>
 
   <!-- QUICK LINKS STRIP -->
-  <section class="quick-links-strip">
+  <section class="quick-links-section">
     <div class="container">
-      <div class="quick-links-grid">
-        <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener" class="quick-link-card">
-          <span class="quick-link-icon">💳</span>
-          <span class="quick-link-label">Give Online</span>
-        </a>
-        <a href="#" class="quick-link-card">
-          <span class="quick-link-icon">🎒</span>
-          <span class="quick-link-label">VBS Sign-Up</span>
-        </a>
-        <a href="#" class="quick-link-card">
-          <span class="quick-link-icon">🧃</span>
-          <span class="quick-link-label">Slush Booth Sign-Up</span>
-        </a>
-        <a href="watch.html" class="quick-link-card">
-          <span class="quick-link-icon">▶️</span>
-          <span class="quick-link-label">Watch Online</span>
-        </a>
+      <button class="quick-links-toggle" aria-expanded="false" aria-controls="quick-links-content">
+        <span class="quick-links-toggle-label">Quick Links</span>
+        <span class="quick-links-toggle-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </span>
+      </button>
+      <div id="quick-links-content" class="quick-links-content" aria-hidden="true">
+        <div class="quick-links-grid">
+          <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener" class="quick-link-card">
+            <span class="quick-link-icon">💳</span>
+            <span class="quick-link-label">Give Online</span>
+          </a>
+          <a href="#" class="quick-link-card">
+            <span class="quick-link-icon">🎒</span>
+            <span class="quick-link-label">VBS Sign-Up</span>
+          </a>
+          <a href="#" class="quick-link-card">
+            <span class="quick-link-icon">🧃</span>
+            <span class="quick-link-label">Slush Booth Sign-Up</span>
+          </a>
+          <a href="watch.html" class="quick-link-card">
+            <span class="quick-link-icon">▶️</span>
+            <span class="quick-link-label">Watch Online</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
+
+  <script>
+    const toggleBtn = document.querySelector('.quick-links-toggle');
+    const content   = document.getElementById('quick-links-content');
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', !isOpen);
+      content.setAttribute('aria-hidden', isOpen);
+      content.style.maxHeight = isOpen ? null : content.scrollHeight + 'px';
+      toggleBtn.classList.toggle('is-open', !isOpen);
+    });
+  </script>
 
   <!-- WELCOME SECTION -->
   <section class="section welcome-section">
