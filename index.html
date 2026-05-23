@@ -92,7 +92,7 @@
       </span>
       <span class="fab-label">Quick Links</span>
     </button>
-    <div class="fab-menu" id="fab-menu" aria-hidden="true" style="opacity:0; pointer-events:none;">
+    <div class="fab-menu" id="fab-menu" aria-hidden="true">
       <a href="https://secure.myvanco.com/YPEP/home" target="_blank" rel="noopener" class="fab-item">
         <span class="fab-item-label">Give Online</span>
         <span class="fab-item-icon">💳</span>
@@ -113,24 +113,30 @@
   </div>
 
   <script>
-    const fabMain    = document.getElementById('fab-main');
-    const fabMenu    = document.getElementById('fab-menu');
+    const fabMain      = document.getElementById('fab-main');
+    const fabMenu      = document.getElementById('fab-menu');
     const fabContainer = document.getElementById('fab-container');
-    const iconOpen   = fabMain.querySelector('.fab-icon-open');
-    const iconClose  = fabMain.querySelector('.fab-icon-close');
+    const iconOpen     = fabMain.querySelector('.fab-icon-open');
+    const iconClose    = fabMain.querySelector('.fab-icon-close');
 
     function openFab() {
+      fabContainer.classList.add('is-open');
       fabMain.setAttribute('aria-expanded', 'true');
       fabMenu.setAttribute('aria-hidden', 'false');
-      fabContainer.classList.add('is-open');
+      fabMenu.style.opacity        = '1';
+      fabMenu.style.transform      = 'translateY(0)';
+      fabMenu.style.pointerEvents  = 'all';
       iconOpen.style.display  = 'none';
       iconClose.style.display = 'flex';
     }
 
     function closeFab() {
+      fabContainer.classList.remove('is-open');
       fabMain.setAttribute('aria-expanded', 'false');
       fabMenu.setAttribute('aria-hidden', 'true');
-      fabContainer.classList.remove('is-open');
+      fabMenu.style.opacity        = '0';
+      fabMenu.style.transform      = 'translateY(8px)';
+      fabMenu.style.pointerEvents  = 'none';
       iconOpen.style.display  = 'flex';
       iconClose.style.display = 'none';
     }
@@ -143,6 +149,9 @@
     document.addEventListener('click', (e) => {
       if (!fabContainer.contains(e.target)) closeFab();
     });
+
+    // Start closed
+    closeFab();
   </script>
 
   <!-- WELCOME SECTION -->
