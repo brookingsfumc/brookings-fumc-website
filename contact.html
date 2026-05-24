@@ -80,10 +80,14 @@
         <h2>Send Us a Message</h2>
         <p style="color:#666; margin-bottom: 1.5rem;">Fill out the form below and we'll get back to you within one business day.</p>
 
-        <!-- FORM NOTE: This form needs a backend service to actually send emails.         -->
-        <!-- Easiest options: Formspree (formspree.io) or Web3Forms (web3forms.com)        -->
-        <!-- Replace action="YOUR_FORM_URL" with your Formspree or Web3Forms endpoint URL -->
-        <form class="contact-form" action="YOUR_FORM_URL" method="POST">
+        <div id="form-success" class="form-feedback form-feedback--success" style="display:none;">
+          <p>✅ <strong>Message sent!</strong> Thanks for reaching out — we'll get back to you within one business day.</p>
+        </div>
+        <div id="form-error" class="form-feedback form-feedback--error" style="display:none;">
+          <p>⚠️ Something went wrong. Please try again or email us directly at <a href="mailto:office@brookingsmethodist.org">office@brookingsmethodist.org</a>.</p>
+        </div>
+
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xredlrjg" method="POST">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Jane Smith" required />
@@ -107,12 +111,8 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary full-width">Send Message</button>
+          <button type="submit" id="submit-btn" class="btn btn-primary full-width">Send Message</button>
         </form>
-
-        <div class="tip-box" style="margin-top: 1.5rem;">
-          <p>💡 <strong>Tip:</strong> To make this form work, sign up at <a href="https://formspree.io" target="_blank" rel="noopener">Formspree.io</a> (free tier available) and replace <code>YOUR_FORM_URL</code> in the form's <code>action</code> attribute with your Formspree endpoint.</p>
-        </div>
       </div>
 
     </div>
@@ -173,6 +173,42 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const form      = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successEl = document.getElementById('form-success');
+    const errorEl   = document.getElementById('form-error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled    = true;
+      submitBtn.textContent = 'Sending…';
+      successEl.style.display = 'none';
+      errorEl.style.display   = 'none';
+
+      try {
+        const res = await fetch('https://formspree.io/f/xredlrjg', {
+          method:  'POST',
+          body:    new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          form.style.display      = 'none';
+          successEl.style.display = 'block';
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (err) {
+        console.error('Form error:', err);
+        errorEl.style.display   = 'block';
+        submitBtn.disabled      = false;
+        submitBtn.textContent   = 'Send Message';
+      }
+    });
+  </script>
 
 </body>
 </html>
