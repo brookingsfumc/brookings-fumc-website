@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Events — Brookings First UMC</title>
+  <title>Church News — Brookings First UMC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Gentium+Basic:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
@@ -21,10 +21,10 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="watch.html">Watch Online</a></li>
-          <li><a href="events.html" class="active">Events</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="church-news.html">Church News</a></li>
+          <li><a href="church-news.html" class="active">Church News</a></li>
           <li><a href="vbs.html">VBS</a></li>
           <li><a href="connect.html">Connect With Us</a></li>
         </ul>
@@ -35,38 +35,57 @@
 
   <section class="page-hero">
     <div class="container">
-      <p class="eyebrow">Stay Connected</p>
-      <h1>Upcoming Events</h1>
+      <p class="eyebrow">In the Life of Our Church</p>
+      <h1>Church News</h1>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
+    <div class="container narrow">
 
-      <!-- Loading state -->
-      <div id="events-loading" class="events-loading">
-        <div class="loading-spinner"></div>
-        <p>Loading upcoming events...</p>
-      </div>
+      <article class="news-item">
+        <span class="news-tag">Announcements</span>
+        <h2>Connect Cards</h2>
+        <p>We'd love to keep your information up to date! Please take a moment to fill out a Connect Card — available at the Welcome Center — to let us know your current contact information and how you'd like to hear from us. You can indicate your preferences for newsletters, membership updates, pastoral prayers, and ministry information. An online option is also available.</p>
+        <a href="connect.html" class="news-read-more">Fill Out a Connect Card →</a>
+      </article>
 
-      <!-- Error state -->
-      <div id="events-error" class="events-error" style="display:none;">
-        <p>⚠️ Unable to load events right now. Please check back soon or <a href="https://calendar.google.com/calendar/embed?src=m6p861t5evod3mp0lctjsou3s4%40group.calendar.google.com" target="_blank" rel="noopener">view our Google Calendar directly</a>.</p>
-      </div>
+      <article class="news-item">
+        <span class="news-tag">Pastor's Office Hours</span>
+        <h2>Public Office Hours with Pastor Jen</h2>
+        <p>Join Pastor Jen for informal Public Office Hours at <strong>Kool Beans Coffee and Roasterie</strong>. Stop by, grab a cup of coffee, and have a conversation — no agenda needed. Check the bulletin or contact the church office for upcoming dates and times.</p>
+      </article>
 
-      <!-- Events list — populated by JavaScript -->
-      <div id="events-list" class="events-list large" style="display:none;"></div>
+      <article class="news-item">
+        <span class="news-tag">Facilities</span>
+        <h2>Spring Clean Up</h2>
+        <p>Help us spruce up our church home! We'll be tackling outdoor tidying and a deep cleaning of the Community Life Center kitchen. Many hands make light work — all are welcome to pitch in. Contact the church office for the current scheduled date and time.</p>
+      </article>
 
-      <!-- Empty state -->
-      <div id="events-empty" class="events-empty" style="display:none;">
-        <p>No upcoming events found. Check back soon!</p>
-        <p><a href="https://calendar.google.com/calendar/embed?src=m6p861t5evod3mp0lctjsou3s4%40group.calendar.google.com" target="_blank" rel="noopener">View our full Google Calendar →</a></p>
-      </div>
+      <article class="news-item">
+        <span class="news-tag">Outreach</span>
+        <h2>#onething — Blanket Drive</h2>
+        <p>This month's <strong>#onething</strong> initiative is a blanket drive. Donate a blanket ($10 each) in honor or remembrance of a mother, aunt, grandmother, or friend who has made a difference in your life. Donation forms are available at the Welcome Center and the church office.</p>
+      </article>
 
-      <!-- Link to full calendar -->
-      <div id="calendar-link" class="center" style="margin-top: 2.5rem; display:none;">
-        <a href="https://calendar.google.com/calendar/embed?src=m6p861t5evod3mp0lctjsou3s4%40group.calendar.google.com" target="_blank" rel="noopener" class="btn btn-secondary">View Full Calendar</a>
-      </div>
+      <article class="news-item">
+        <span class="news-tag">Pastoral Care</span>
+        <h2>Your Church Cares!</h2>
+        <p>Did you know Brookings First UMC has an active prayer chain and visitation ministry? If you or someone you know is experiencing a life event — illness, loss, a new baby, or anything else — please give the church office a call at <a href="tel:6056924345">605-692-4345</a>. We want to show up for you.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="news-tag">Giving</span>
+        <h2>Give Online with the Vanco App</h2>
+        <p>Giving to Brookings First UMC is easy with the <strong>Vanco Payment Solutions</strong> mobile app, available for Apple and Android devices. Simply search "Brookings" and select First United Methodist Church. You can also give online any time at <a href="give.html">our giving page</a>. Questions? Call us at <a href="tel:6056924345">605-692-4345</a>.</p>
+        <a href="give.html" class="news-read-more">Learn More About Giving →</a>
+      </article>
+
+      <article class="news-item">
+        <span class="news-tag">Worship</span>
+        <h2>Radio Broadcast Sponsorships Available</h2>
+        <p>The 2026 Radio Broadcast sponsorship signup sheet is now available at the Welcome Center. Sponsor a Sunday broadcast on <strong>KBRK 1430 AM</strong> for <strong>$60</strong> — a meaningful way to honor or remember someone special while supporting our outreach to the broader community. Our broadcast airs Sundays at 9:30 AM.</p>
+      </article>
 
     </div>
   </section>
@@ -96,8 +115,6 @@
           <li><a href="events.html">Events</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="church-news.html">Church News</a></li>
-          <li><a href="vbs.html">VBS</a></li>
           <li><a href="connect.html">Connect With Us</a></li>
         </ul>
       </div>
@@ -128,103 +145,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    const API_KEY     = 'AIzaSyCK4vyJoMfocN1YgD2vHpXxAtMEePKIf5M';
-    const CALENDAR_ID = 'm6p861t5evod3mp0lctjsou3s4@group.calendar.google.com';
-    const MAX_EVENTS  = 20;
-    const MONTHS      = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-    const DAYS        = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-    function formatTime(dateStr, isAllDay) {
-      if (isAllDay) return 'All Day';
-      const d = new Date(dateStr);
-      let h = d.getHours(), m = d.getMinutes(), ampm = h >= 12 ? 'PM' : 'AM';
-      h = h % 12 || 12;
-      return m === 0 ? `${h}:00 ${ampm}` : `${h}:${String(m).padStart(2,'0')} ${ampm}`;
-    }
-
-    function formatDateRange(start, end, isAllDay) {
-      const startDate = new Date(isAllDay ? start.date : start.dateTime);
-      const endDate   = end ? new Date(isAllDay ? end.date : end.dateTime) : null;
-
-      const startTime = formatTime(isAllDay ? start.date : start.dateTime, isAllDay);
-
-      if (!endDate || isAllDay) return `${DAYS[startDate.getDay()]} · ${startTime}`;
-
-      const endTime = formatTime(isAllDay ? end.date : end.dateTime, isAllDay);
-      return `${DAYS[startDate.getDay()]} · ${startTime} – ${endTime}`;
-    }
-
-    function buildEventCard(event) {
-      const isAllDay  = !event.start.dateTime;
-      const startDate = new Date(isAllDay ? event.start.date : event.start.dateTime);
-      const month     = MONTHS[startDate.getMonth()];
-      const day       = startDate.getDate();
-      const timeStr   = formatDateRange(event.start, event.end, isAllDay);
-      const location  = event.location ? `<span class="event-location"> · ${event.location}</span>` : '';
-      const desc      = event.description
-        ? `<p class="event-desc">${event.description.replace(/<[^>]*>/g, '').substring(0, 200)}${event.description.length > 200 ? '…' : ''}</p>`
-        : '';
-      const link      = event.htmlLink
-        ? `<a href="${event.htmlLink}" target="_blank" rel="noopener" class="event-gcal-link">Add to calendar →</a>`
-        : '';
-
-      return `
-        <div class="event-row">
-          <div class="event-date">
-            <span class="month">${month}</span>
-            <span class="day">${day}</span>
-          </div>
-          <div class="event-info">
-            <h4>${event.summary || 'Untitled Event'}</h4>
-            <p class="event-meta"><strong>${timeStr}</strong>${location}</p>
-            ${desc}
-            ${link}
-          </div>
-        </div>`;
-    }
-
-    async function loadEvents() {
-      const loading   = document.getElementById('events-loading');
-      const errorEl   = document.getElementById('events-error');
-      const listEl    = document.getElementById('events-list');
-      const emptyEl   = document.getElementById('events-empty');
-      const calLink   = document.getElementById('calendar-link');
-
-      const now       = new Date().toISOString();
-      const url       = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events`
-        + `?key=${API_KEY}`
-        + `&timeMin=${now}`
-        + `&maxResults=${MAX_EVENTS}`
-        + `&singleEvents=true`
-        + `&orderBy=startTime`;
-
-      try {
-        const res  = await fetch(url);
-        if (!res.ok) throw new Error(`API error ${res.status}`);
-        const data = await res.json();
-
-        loading.style.display = 'none';
-
-        if (!data.items || data.items.length === 0) {
-          emptyEl.style.display = 'block';
-          return;
-        }
-
-        listEl.innerHTML = data.items.map(buildEventCard).join('');
-        listEl.style.display  = 'flex';
-        calLink.style.display = 'block';
-
-      } catch (err) {
-        console.error('Calendar load error:', err);
-        loading.style.display = 'none';
-        errorEl.style.display = 'block';
-      }
-    }
-
-    loadEvents();
-  </script>
 
 </body>
 </html>
