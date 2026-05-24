@@ -22,10 +22,9 @@
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="watch.html">Watch Online</a></li>
-          <li><a href="events.html">Events</a></li>
+          <li><a href="news-events.html">News &amp; Events</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="church-news.html">Church News</a></li>
         </ul>
       </nav>
       <a href="connect.html" class="btn btn-primary">Connect With Us</a>
@@ -187,7 +186,7 @@
           <div class="card-icon">📖</div>
           <h3>Grow in Faith</h3>
           <p>From Sunday school to small groups to Bible study, we have opportunities for every age and stage.</p>
-          <a href="events.html" class="card-link">See Events →</a>
+          <a href="news-events.html" class="card-link">See Events →</a>
         </div>
         <div class="feature-card">
           <div class="card-icon">🤝</div>
@@ -215,10 +214,10 @@
       </div>
       <div id="home-events-list" class="events-list" style="display:none;"></div>
       <div id="home-events-error" style="display:none; text-align:center; padding: 1rem 0; color: var(--text-light);">
-        <p>Unable to load events. <a href="events.html">View all events →</a></p>
+        <p>Unable to load events. <a href="news-events.html">View all events →</a></p>
       </div>
       <div class="center" style="margin-top: 2rem;">
-        <a href="events.html" class="btn btn-primary">View All Events</a>
+        <a href="news-events.html" class="btn btn-primary">View All Events</a>
       </div>
     </div>
   </section>
@@ -254,7 +253,7 @@
         loading.style.display = 'none';
 
         if (!data.items || data.items.length === 0) {
-          errorEl.innerHTML = '<p>No upcoming events. <a href="events.html">View calendar →</a></p>';
+          errorEl.innerHTML = '<p>No upcoming events. <a href="news-events.html">View calendar →</a></p>';
           errorEl.style.display = 'block';
           return;
         }
@@ -273,7 +272,7 @@
                 <h4>${event.summary || 'Untitled Event'}</h4>
                 <p class="event-meta"><strong>${dayName} · ${timeStr}</strong></p>
               </div>
-              <a href="events.html" class="btn btn-secondary">Details</a>
+              <a href="news-events.html" class="btn btn-secondary">Details</a>
             </div>`;
         }).join('');
 
@@ -311,10 +310,9 @@
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="watch.html">Watch Online</a></li>
-          <li><a href="events.html">Events</a></li>
+          <li><a href="news-events.html">News &amp; Events</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="church-news.html">Church News</a></li>
         </ul>
       </div>
       <div class="footer-contact">
