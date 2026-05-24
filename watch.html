@@ -41,7 +41,7 @@
   <section class="section">
     <div class="container narrow">
       <p class="eyebrow center">Latest Message</p>
-      <h2 class="center">This Week's Sermon</h2>
+      <h2 class="center">Sunday Morning Worship</h2>
       <!-- REPLACE the src below with your actual YouTube embed URL -->
       <!-- To get the embed URL: go to YouTube video → Share → Embed → copy the src -->
       <div class="video-embed">
@@ -53,10 +53,6 @@
           allowfullscreen>
         </iframe>
       </div>
-      <div class="sermon-meta">
-        <h3>[Sermon Title]</h3>
-        <p>Pastor Jen Osterloh · [Date] · Scripture: [Reference]</p>
-      </div>
     </div>
   </section>
 
@@ -64,32 +60,14 @@
     <div class="container narrow">
       <p class="eyebrow center">Recent Messages</p>
       <h2 class="center">Sermon Archive</h2>
-      <p class="center" style="color: #666; margin-bottom: 2rem;">Browse our recent sermons below, or visit our <a href="https://www.youtube.com/@brookingsfumc" target="_blank" rel="noopener" style="color: var(--maroon);">YouTube channel</a> for the full archive.</p>
-      <div class="sermon-list">
-        <div class="sermon-row">
-          <div class="sermon-thumb">▶</div>
-          <div class="sermon-info">
-            <h4>[Sermon Title]</h4>
-            <p>[Date] · [Scripture Reference]</p>
-          </div>
-          <a href="#" class="btn btn-secondary">Watch</a>
-        </div>
-        <div class="sermon-row">
-          <div class="sermon-thumb">▶</div>
-          <div class="sermon-info">
-            <h4>[Sermon Title]</h4>
-            <p>[Date] · [Scripture Reference]</p>
-          </div>
-          <a href="#" class="btn btn-secondary">Watch</a>
-        </div>
-        <div class="sermon-row">
-          <div class="sermon-thumb">▶</div>
-          <div class="sermon-info">
-            <h4>[Sermon Title]</h4>
-            <p>[Date] · [Scripture Reference]</p>
-          </div>
-          <a href="#" class="btn btn-secondary">Watch</a>
-        </div>
+      <p class="center" style="color: #666; margin-bottom: 2rem;">Browse our recent sermons below, or visit our <a href="https://www.youtube.com/@brookingsfumc" target="_blank" rel="noopener" style="color: var(--teal);">YouTube channel</a> for the full archive.</p>
+      <div id="sermons-loading" class="center" style="padding: 2rem 0; color: var(--text-light);">Loading recent sermons…</div>
+      <div id="sermons-error" style="display:none; text-align:center; padding: 1.5rem; background: var(--cream); border-radius: 2px;">
+        <p>⚠️ Unable to load sermons right now. <a href="https://www.youtube.com/@brookingsfumc" target="_blank" rel="noopener">Visit our YouTube channel</a> to watch recent services.</p>
+      </div>
+      <div id="sermons-list" class="sermon-list" style="display:none;"></div>
+      <div class="center" style="margin-top: 2rem;">
+        <a href="https://www.youtube.com/@brookingsfumc" target="_blank" rel="noopener" class="btn btn-secondary">View Full Archive on YouTube</a>
       </div>
     </div>
   </section>
@@ -149,6 +127,73 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const YT_API_KEY  = 'AIzaSyCK4vyJoMfocN1YgD2vHpXxAtMEePKIf5M';
+    const CHANNEL_ID  = 'UChyCUpNt8v1zYMg1RFiAtPg';
+    const PLAYLIST_ID = 'UU' + CHANNEL_ID.slice(2); // uploads playlist
+    const MONTHS      = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    function formatDate(isoStr) {
+      const d = new Date(isoStr);
+      return `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    }
+
+    function buildSermonRow(item) {
+      const snippet = item.snippet;
+      const videoId = snippet.resourceId.videoId;
+      const title   = snippet.title;
+      const date    = formatDate(snippet.publishedAt);
+      const thumb   = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
+      const url     = `https://www.youtube.com/watch?v=${videoId}`;
+      return `
+        <div class="sermon-row">
+          <div class="sermon-thumb sermon-thumb-img">
+            <img src="${thumb}" alt="${title}" />
+          </div>
+          <div class="sermon-info">
+            <h4>${title}</h4>
+            <p>${date}</p>
+          </div>
+          <a href="${url}" target="_blank" rel="noopener" class="btn btn-secondary">Watch</a>
+        </div>`;
+    }
+
+    async function loadSermons() {
+      const loadingEl = document.getElementById('sermons-loading');
+      const errorEl   = document.getElementById('sermons-error');
+      const listEl    = document.getElementById('sermons-list');
+
+      const url = `https://www.googleapis.com/youtube/v3/playlistItems`
+        + `?part=snippet`
+        + `&playlistId=${PLAYLIST_ID}`
+        + `&maxResults=3`
+        + `&key=${YT_API_KEY}`;
+
+      try {
+        const res  = await fetch(url);
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data = await res.json();
+
+        loadingEl.style.display = 'none';
+
+        if (!data.items || data.items.length === 0) {
+          errorEl.style.display = 'block';
+          return;
+        }
+
+        listEl.innerHTML    = data.items.map(buildSermonRow).join('');
+        listEl.style.display = 'flex';
+
+      } catch (err) {
+        console.error('YouTube load error:', err);
+        loadingEl.style.display = 'none';
+        errorEl.style.display   = 'block';
+      }
+    }
+
+    loadSermons();
+  </script>
 
 </body>
 </html>
