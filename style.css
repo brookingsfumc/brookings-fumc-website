@@ -177,35 +177,37 @@ img { max-width: 100%; display: block; }
 .nav-inner {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
+  max-width: 1400px; /* wider than .container's 1100px so nav fits on one row */
 }
 
 .logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
-.logo img { height: 52px; width: auto; }
+.logo img { height: 48px; width: auto; }
 
-nav { flex: 1; }
+nav { flex: 1; min-width: 0; }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 0.1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* prevent two-row wrapping */
 }
 
 .nav-links a {
   display: block;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 0.55rem;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-mid);
   border-radius: 2px;
   transition: all 0.15s;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -214,9 +216,148 @@ nav { flex: 1; }
   background: rgba(127, 17, 23, 0.06);
 }
 
+/* --- HAMBURGER TOGGLE (desktop: hidden) --- */
+.nav-toggle {
+  display: none;
+}
+
+/* --- MOBILE NAV --- */
 @media (max-width: 900px) {
-  .nav-links { display: none; }
-  .site-header .btn { display: none; }
+  /* Header: logo left, hamburger right */
+  .nav-inner {
+    gap: 0;
+    max-width: none;
+    position: relative; /* anchor for absolute nav panel */
+  }
+
+  /* Hide desktop-only items */
+  nav { display: none; }
+  .site-header > * .btn-primary { display: none; }
+  .site-header .btn-primary { display: none; }
+  .site-search { display: none; }
+
+  /* Show hamburger */
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    color: var(--text-mid);
+    border-radius: 2px;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .nav-toggle:hover { color: var(--red); }
+
+  /* Hamburger → X animation */
+  .nav-toggle svg line {
+    transform-origin: 12px 12px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .nav-toggle.is-open .bar-top    { transform: rotate(45deg) translate(0, 6px); }
+  .nav-toggle.is-open .bar-mid    { opacity: 0; }
+  .nav-toggle.is-open .bar-bottom { transform: rotate(-45deg) translate(0, -6px); }
+
+  /* Mobile nav panel — slides in below sticky header */
+  nav.mobile-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    border-bottom: 3px solid var(--red);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+    z-index: 200;
+  }
+
+  /* Stack nav links vertically */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0 0.75rem;
+    gap: 0;
+    flex-wrap: nowrap;
+  }
+
+  .nav-links > li { width: 100%; }
+
+  .nav-links a {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    white-space: normal;
+  }
+
+  /* Mobile connect button (appended by nav.js) */
+  .mobile-connect-item {
+    padding: 0.75rem 1.5rem 0.25rem;
+    list-style: none;
+  }
+  .mobile-connect-btn {
+    display: block !important;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  /* Mobile Ministries dropdown — disable CSS :hover, use JS .is-open */
+  .nav-dropdown { position: static; }
+
+  .nav-dropdown-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Kill the CSS hover behaviour on mobile */
+  .nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+  }
+  .nav-dropdown:hover .nav-dropdown-toggle {
+    color: var(--text-mid);
+    background: none;
+  }
+  .nav-dropdown:hover .nav-dropdown-toggle::after { transform: none; }
+
+  /* JS-controlled open state */
+  .nav-dropdown-menu {
+    position: static;
+    opacity: 0;
+    visibility: hidden;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    border-left: 3px solid var(--border);
+    border-radius: 0;
+    background: var(--cream);
+    margin-left: 1.5rem;
+    min-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 0.25s ease, opacity 0.2s ease, visibility 0.2s;
+  }
+  .nav-dropdown.is-open .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 400px;
+    padding: 0.3rem 0;
+  }
+  .nav-dropdown.is-open .nav-dropdown-toggle { color: var(--red); }
+  .nav-dropdown.is-open .nav-dropdown-toggle::after { transform: rotate(180deg); }
+  .nav-dropdown-menu li a {
+    padding: 0.55rem 1rem 0.55rem 1.25rem;
+    font-size: 0.95rem;
+  }
 }
 
 /* --- HERO --- */
@@ -1431,11 +1572,11 @@ nav { flex: 1; }
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 0.55rem;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-mid);
   border-radius: 2px;
@@ -1547,7 +1688,7 @@ nav { flex: 1; }
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   color: var(--text-dark);
-  width: 140px;
+  width: 115px;
   outline: none;
 }
 
