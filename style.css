@@ -1642,7 +1642,7 @@ nav { flex: 1; }
   flex-wrap: wrap;
 }
 
-.ministry-contact-bar strong {
+.ministry-contact-bar .contact-bar-label {
   font-family: var(--font-display);
   font-size: 0.78rem;
   letter-spacing: 0.12em;
