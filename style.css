@@ -91,6 +91,16 @@ img { max-width: 100%; display: block; }
   margin-bottom: 0.5rem;
 }
 
+/* Larger section-divider variant — used for mid-page group headings */
+.eyebrow.eyebrow-section {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0;
+}
+
 /* --- BUTTONS --- */
 .btn {
   display: inline-block;
