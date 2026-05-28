@@ -20,12 +20,31 @@
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
+          <li class="nav-dropdown">
+            <span class="nav-dropdown-toggle">Ministries</span>
+            <ul class="nav-dropdown-menu">
+              <li><a href="children.html">Children</a></li>
+              <li><a href="youth.html">Youth</a></li>
+              <li><a href="adults.html">Adults</a></li>
+              <li><a href="music.html">Music</a></li>
+              <li><a href="missions.html">Missions</a></li>
+            </ul>
+          </li>
           <li><a href="watch.html">Watch Online</a></li>
           <li><a href="news-events.html">News &amp; Events</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <form class="site-search" action="https://www.google.com/search" method="get" target="_blank" role="search">
+        <input type="hidden" name="sitesearch" value="brookingsmethodist.org" />
+        <div class="search-wrap">
+          <input class="search-input" type="search" name="q" placeholder="Search…" aria-label="Search site" />
+          <button class="search-btn" type="submit" aria-label="Submit search">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+      </form>
       <a href="connect.html" class="btn btn-primary">Connect With Us</a>
     </div>
   </header>
